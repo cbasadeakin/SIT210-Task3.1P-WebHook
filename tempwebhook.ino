@@ -6,11 +6,11 @@
 
 int led = D7;  // The on-board LED
 
-DHT dht(DHTPIN, DHTTYPE);   // Initialise DH22 sensor
+DHT dht(DHTPIN, DHTTYPE);   // Declare DHT object
 
 void setup() {
-  pinMode(led, OUTPUT);
-  dht.begin();
+  pinMode(led, OUTPUT);   // Set pin to output
+  dht.begin();             // Initialise the sensor
 }
 
 void loop() {
@@ -18,7 +18,7 @@ void loop() {
 
   double temp = dht.getTempCelcius(); // Read temperature as Celcius
   
-  Particle.publish("temp", String(temp), PRIVATE);
+  Particle.publish("temp", String(temp), PRIVATE);   // Publish to cloud
   delay(30000);               // Wait for 30 seconds
 
   digitalWrite(led, LOW);    // Turn OFF the LED
